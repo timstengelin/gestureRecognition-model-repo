@@ -1,2 +1,2 @@
-# gestureRecognition-model-repo
+# gestureRecognition-setupModel-repo
 
