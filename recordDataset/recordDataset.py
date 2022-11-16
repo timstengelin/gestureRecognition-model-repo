@@ -3,8 +3,5 @@
 ####################################################################################################
 import serial
 
-print('Hello')
-
-
 def recordDataset():
     print('TODO recordDataset()')
