@@ -99,4 +99,5 @@ def recordDataset():
 
     root.mainloop()
 
+# Auskommentieren wenn recordDataset.py eigenständig benutzt werden soll!
 # recordDataset()
