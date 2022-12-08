@@ -1,6 +1,7 @@
 ####################################################################################################
 # recordDataset.py
 ####################################################################################################
+import os
 import tkinter as tk
 import serial, threading
 
@@ -27,7 +28,7 @@ class App(tk.Frame):
         self.saveDataButton.grid(row=1, column=1, pady=10, padx=(10, 0), sticky="W")
 
         self.pathEntry = tk.Entry(self, width=self.__entryWidth)
-        self.pathEntry.insert(0, "Path:\\\\")
+        self.pathEntry.insert(0, "\\\\gesgestureDirectory\\\\fileName.csv")
         self.pathEntry.grid(row=2, column=0, columnspan=2, padx=10, pady=10)
 
         self.scrollbar = tk.Scrollbar(self, orient=tk.VERTICAL)
@@ -72,12 +73,13 @@ class App(tk.Frame):
     def clearData(self):
         self.data.clear()
         self.listbox.delete(0, tk.END)
-        self.listbox.insert(tk.END, "Sample  aX  ay  az")
+        self.listbox.insert(tk.END, "Sample  aX  aY  aZ")
 
     def createFile(self):
         strPath = self.pathEntry.get()
+        newPath = os.path.realpath("..\\data\\datasets\\"+strPath)
         try:
-            datei = open(strPath, "w", encoding="utf-8")
+            datei = open(newPath, "w", encoding="utf-8")
             datei.writelines(self.data)
             datei.close()
             self.statusLabel.config(text="Status: File erstellt")
@@ -100,5 +102,5 @@ def recordDataset():
 
     root.mainloop()
 
-# Auskommentieren wenn recordDataset.py eigenständig benutzt werden soll!
+# Auskommentieren, wenn recordDataset.py eigenständig benutzt werden soll!
 recordDataset()

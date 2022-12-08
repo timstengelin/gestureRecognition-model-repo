@@ -1,16 +1,18 @@
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
 #**************** Plot  settings ****************************
 
 # Select the gesture wich should be plotted
+gestureDirectory = "gesture_number1"
 fileName = "number1_"
 # File typ must always be .csv
 fileTyp = ".csv"
 
 # Select the number of files wich should be visualized
 startFile = 1
-endFile = 4
+endFile = 10
 
 # When True legend will also be visualized
 withLegend = True
@@ -18,19 +20,23 @@ withLegend = True
 #************************************************************
 
 
-# Create a list of all file names
+# Create a list of all file names and paths
 fileNames = list()
+filepaths = list()
 for i in range(startFile, endFile+1):
-    fileNames.append(fileName+str(i)+fileTyp)
+    name = fileName+str(i)+fileTyp
+    newPath = os.path.realpath("..\\data\\datasets\\"+gestureDirectory+"\\"+name)
+    filepaths.append(newPath)
+    fileNames.append(name)
 
 fig, axs = plt.subplots(1, 3, figsize = [15,5])
 fig.tight_layout(pad=3.0)   # Space between the subplots
 
 # Plot all values of the Files in different subplots
-for name in fileNames:
-    data = pd.read_csv(name, names=["Sample", "aX", "aY", "aZ"], sep=",")
+for path in filepaths:
+    data = pd.read_csv(path, names=["Sample", "aX", "aY", "aZ"], sep=",")
 
-    axs[0].plot(data["aX"], )
+    axs[0].plot(data["aX"])
     axs[1].plot(data["aY"])
     axs[2].plot(data["aZ"])
 

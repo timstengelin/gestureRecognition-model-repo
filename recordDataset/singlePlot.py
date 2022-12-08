@@ -1,9 +1,17 @@
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-fileName = "number1_1.csv"
+gestureDirectory = "gesture_number1"
+filename = "number1_1.csv"
 
-data = pd.read_csv(fileName, names=["Sample", "aX", "aY", "aZ"], sep=",")
+
+newPath = os.path.realpath("..\\data\\datasets\\"+gestureDirectory+"\\"+filename)
+
+
+fileName = "../data/datasets/gesture_number1/number1_1.csv"
+
+data = pd.read_csv(newPath, names=["Sample", "aX", "aY", "aZ"], sep=",")
 
 # Plot 1
 
