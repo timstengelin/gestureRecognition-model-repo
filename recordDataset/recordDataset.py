@@ -33,7 +33,7 @@ class App(tk.Frame):
         self.scrollbar = tk.Scrollbar(self, orient=tk.VERTICAL)
         self.listbox = tk.Listbox(self, width=self.__listBoxWidth, height=self.__listBoxHight,
                                   yscrollcommand=self.scrollbar.set)
-        self.listbox.insert(tk.END, "Nr.    |   ax  |    ay     |   az  |   gx  |   gy  |   gz")
+        self.listbox.insert(tk.END, "Sample  aX  ay  az")
         self.scrollbar["command"] = self.listbox.yview
         self.listbox.grid(row=3, column=0, columnspan=2, sticky="NESW", padx=(10, 0))
         self.scrollbar.grid(row=3, column=2, sticky="NSW")
@@ -72,7 +72,7 @@ class App(tk.Frame):
     def clearData(self):
         self.data.clear()
         self.listbox.delete(0, tk.END)
-        self.listbox.insert(tk.END, "Nr.    |   ax  |   ay  |   az  |   gx  |   gy  |   gz")
+        self.listbox.insert(tk.END, "Sample  aX  ay  az")
 
     def createFile(self):
         strPath = self.pathEntry.get()
@@ -82,6 +82,7 @@ class App(tk.Frame):
             datei.close()
             self.statusLabel.config(text="Status: File erstellt")
             print("Status: File erstellt")
+            self.clearData()
         except Exception as ex:
             self.statusLabel.config(text="Status: Datei konnte nicht erstellt werden")
             print("Status: Datei konnte nicht erstellt werden\nException:", ex)
@@ -90,7 +91,7 @@ class App(tk.Frame):
 def recordDataset():
     # Fenster erstellen und Titel festlegen
     root = tk.Tk()
-    root.title("")
+    root.title("Record Dataset")
     root.resizable(False, False)
 
     # Instanz der App-Klasse erzeugen und ins Fenster packen
@@ -100,4 +101,4 @@ def recordDataset():
     root.mainloop()
 
 # Auskommentieren wenn recordDataset.py eigenständig benutzt werden soll!
-# recordDataset()
+recordDataset()
