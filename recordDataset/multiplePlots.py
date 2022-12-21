@@ -29,31 +29,54 @@ for i in range(startFile, endFile+1):
     filepaths.append(newPath)
     fileNames.append(name)
 
-fig, axs = plt.subplots(1, 3, figsize = [15,5])
-fig.tight_layout(pad=3.0)   # Space between the subplots
+
+fig2, axs2 = plt.subplots(1, 3, figsize = [15,5])
+fig2.tight_layout(pad=3.0)   # Space between the subplots
+
+fig1, axs1 = plt.subplots(1, 3, figsize = [15,5])
+fig1.tight_layout(pad=3.0)   # Space between the subplots
+
 
 # Plot all values of the Files in different subplots
 for path in filepaths:
-    data = pd.read_csv(path, names=["Sample", "aX", "aY", "aZ"], sep=",")
+    data = pd.read_csv(path, names=["Sample", "aX", "aY", "aZ", "gX", "gY", "gZ"], sep=",")
 
-    axs[0].plot(data["aX"])
-    axs[1].plot(data["aY"])
-    axs[2].plot(data["aZ"])
+    axs1[0].plot(data["aX"])
+    axs1[1].plot(data["aY"])
+    axs1[2].plot(data["aZ"])
 
-axs[0].set_title("aX")
-axs[1].set_title("aY")
-axs[2].set_title("aZ")
+    axs2[0].plot(data["gX"])
+    axs2[1].plot(data["gY"])
+    axs2[2].plot(data["gZ"])
 
-axs[0].set_ylim([-5,25])
-axs[1].set_ylim([-10,10])
-axs[2].set_ylim([-10,10])
+axs1[0].set_title("aX")
+axs1[1].set_title("aY")
+axs1[2].set_title("aZ")
 
-for ax in axs.flat:
-    ax.set(xlabel='samples', ylabel='a in m/s^2')
+axs2[0].set_title("gX")
+axs2[1].set_title("gY")
+axs2[2].set_title("gZ")
+
+axs1[0].set_ylim([-5,25])
+axs1[1].set_ylim([-10,10])
+axs1[2].set_ylim([-10,10])
+
+axs2[0].set_ylim([-200,200])
+axs2[1].set_ylim([-200,200])
+axs2[2].set_ylim([-200,200])
+
+for ax in axs1.flat:
+    ax.set(xlabel='Samples', ylabel='m/s^2')
     ax.grid()
 
+for gx in axs2.flat:
+    gx.set(xlabel='Samples', ylabel='Deg./Sec.')
+    gx.grid()
+
 if withLegend:
-    axs[2].legend(fileNames, loc="upper left", bbox_to_anchor=(1, 1))
-    plt.tight_layout()
+    axs1[2].legend(fileNames, loc="upper left", bbox_to_anchor=(1, 1))
+    axs2[2].legend(fileNames, loc="upper left", bbox_to_anchor=(1, 1))
+    fig1.tight_layout()
+    fig2.tight_layout()
 
 plt.show()
