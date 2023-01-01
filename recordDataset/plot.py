@@ -2,8 +2,8 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-gestureDirectory = "gesture_number1"
-filename = "number1_1.csv"
+gestureDirectory = "gesture_number2"
+filename = "number2_1.csv"
 
 
 newPath = os.path.realpath("..\\data\\datasets\\"+gestureDirectory+"\\"+filename)

@@ -1,5 +1,10 @@
 # Loading the Reuters dataset
 from keras.datasets import reuters
+import tensorflow as tf
+
+physical_devices = tf.config.experimental.list_physical_devices('GPU')
+print("Num GPUs Available: ", len(physical_devices))
+tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
 (train_data, train_labels), (test_data, test_labels) = reuters.load_data(num_words=10000)
 
@@ -30,7 +35,7 @@ def to_one_hot(labels, dimension=46):
 one_hot_train_labels = to_one_hot(train_labels)
 one_hot_test_labels = to_one_hot(test_labels)
 
-# Alternative for lines 23 to 31
+# Alternative for lines above
 '''
 from keras.utils.np_utils import to_categorical
 
