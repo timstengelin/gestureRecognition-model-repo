@@ -9,7 +9,7 @@ class App(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
 
-        self.__counter = 26
+        self.__counter = 0
 
         # Erstellen und Platzieren der Steuerelemente
         self.__buttonWidth = 15
@@ -78,14 +78,15 @@ class App(tk.Frame):
         self.listbox.insert(tk.END, "Sample  aX  aY  aZ")
 
     def createFile(self):
-        self.__counter = self.__counter + 1
-        strPath = self.pathEntry.get()
-        #newPath = os.path.realpath("..\\data\\datasets\\"+strPath)
-        #totalStr = "gesture_number0\\number0_"+str(self.__counter)+".csv"
 
+        strPath = self.pathEntry.get()
+        newPath = os.path.realpath("..\\data\\datasets\\"+strPath)
+
+        #self.__counter = self.__counter + 1
+        #totalStr = "gesture_number1\\number1_"+str(self.__counter)+".csv"
         #self.pathEntry.delete(0, 'end')
         #self.pathEntry.insert(0, totalStr)
-        newPath = os.path.realpath("..\\data\\datasets\\" + strPath)
+        #newPath = os.path.realpath("..\\data\\datasets\\" + totalStr)
 
         try:
             datei = open(newPath, "w", encoding="utf-8")

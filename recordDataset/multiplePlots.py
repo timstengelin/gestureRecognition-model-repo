@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 #**************** Plot  settings ****************************
 
 # Select the gesture wich should be plotted
-gestureDirectory = "gesture_number0"
-fileName = "number0_"
+gestureDirectory = "gesture_number1"
+fileName = "number1_"
 # File typ must always be .csv
 fileTyp = ".csv"
 
@@ -57,7 +57,7 @@ axs2[0].set_title("gX")
 axs2[1].set_title("gY")
 axs2[2].set_title("gZ")
 
-axs1[0].set_ylim([-5,25])
+axs1[0].set_ylim([-5,30])
 axs1[1].set_ylim([-15,15])
 axs1[2].set_ylim([-15,20])
 
