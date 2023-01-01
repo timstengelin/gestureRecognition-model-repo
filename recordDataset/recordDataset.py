@@ -83,7 +83,7 @@ class App(tk.Frame):
         newPath = os.path.realpath("..\\data\\datasets\\"+strPath)
 
         #self.__counter = self.__counter + 1
-        #totalStr = "gesture_number2\\number2_"+str(self.__counter)+".csv"
+        #totalStr = "gesture_number1\\number1_"+str(self.__counter)+".csv"
         #self.pathEntry.delete(0, 'end')
         #self.pathEntry.insert(0, totalStr)
         #newPath = os.path.realpath("..\\data\\datasets\\" + totalStr)
