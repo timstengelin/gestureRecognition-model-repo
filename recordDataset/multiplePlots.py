@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 #**************** Plot  settings ****************************
 
 # Select the gesture wich should be plotted
-gestureDirectory = "gesture_number2"
-fileName = "number2_"
+gestureDirectory = "gesture_number3"
+fileName = "number3_"
 # File typ must always be .csv
 fileTyp = ".csv"
 
