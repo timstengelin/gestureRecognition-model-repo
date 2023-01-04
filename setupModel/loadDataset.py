@@ -46,6 +46,9 @@ def loadDataset():
     normalizedData_allSamples = normalizedData_allSamples.transpose().to_numpy()
     # [1000 (= gestures*samplesPerGesture = samples) rows x 1506 (= features*timestepsPerFeature = timesteps) columns]
 
+    # ******************** SPLIT DATA ********************
+    # TODO
+
     print('bp')
 
 
