@@ -5,14 +5,16 @@
 from keras import models
 from keras import layers
 
+from setupModel.loadDataset import loadDataset
+
 
 def vectorize_data():
     print('TODO')
 
 
 def setupModel():
-    # LOADING DATASET
-    # TODO
+    # LOAD DATASET
+    loadDataset()
 
     # ENCODING THE DATA
     train_data = 0
@@ -25,7 +27,7 @@ def setupModel():
 
     # MODEL DEFINITON
     model = models.Sequential()
-    model.add(layers.Dense(32, activation='relu', input_shape=(250,)))
+    model.add(layers.Dense(32, activation='relu', input_shape=(6,250,)))
     model.add(layers.Dense(32, activation='relu'))
     model.add(layers.Dense(10, activation='softmax'))
         # end network with Dense layer of size 10  --> for each input sample, network will output 10-dimensional vector, which each entry encoding a different output class
