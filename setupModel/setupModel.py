@@ -8,22 +8,9 @@ from keras import layers
 from setupModel.loadDataset import loadDataset
 
 
-def vectorize_data():
-    print('TODO')
-
-
 def setupModel():
     # LOAD DATASET
-    loadDataset()
-
-    # ENCODING THE DATA
-    train_data = 0
-    test_data = 0
-
-    # ENCODING THE LABELS
-    train_labels = 0
-    test_labels = 0
-        # encoding the labels via categorical encoding (also known as one-hot encoding)
+    data_train, labels_train, data_validation, labels_validation, data_test, labels_test = loadDataset()
 
     # MODEL DEFINITON
     model = models.Sequential()
@@ -39,20 +26,12 @@ def setupModel():
                   metrics=['accuracy'])
         # encoding the labels via categorical encoding (also known as one-hot encoding) and using categorical_crossentropy as a loss function
 
-    # SETTING ASIDE A VALIDATION SET
-    # maybe TODO
-    val_data = 0
-    train_partial_data = 0
-
-    val_labels = 0
-    train_partial_labels = 0
-
     # TRAINING THE MODEL
-    history = model.fit(train_partial_data,
-                        train_partial_labels,
-                        epochs=4,
+    history = model.fit(data_train,
+                        labels_train,
+                        epochs=20,
                         batch_size=10,
-                        validation_data=(val_data, val_labels))
+                        validation_data=(data_validation, labels_validation))
 
     # PLOTTING THE TRAINING AND VALIDATION LOSS
     # TODO
@@ -61,7 +40,7 @@ def setupModel():
     # TODO
 
     # EVALUATE MODEL
-    results = model.evaluate(test_data, test_labels)
+    results = model.evaluate(data_test, labels_test)
     print(results)
 
 
