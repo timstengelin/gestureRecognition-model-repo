@@ -1,7 +1,12 @@
+####################################################################################################
+# loadDatset.py
+####################################################################################################
+
 import os
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import StratifiedShuffleSplit
+from keras.utils.np_utils import to_categorical
 
 # ******************** SETTINGS ********************
 gestures = range(0, 9 + 1)
@@ -68,7 +73,9 @@ def loadDataset():
     print("trainValidationSplit:\nshape \"data_train\": {0}\nshape \"labels_train\": {1}\nshape \"data_validation\": {2}\nshape \"labels_validation\": {3}\n" \
           .format(data_train.shape, labels_train.shape, data_validation.shape, labels_validation.shape))
 
+    # ******************** ONE-HOT ENCODE LABELS ********************
+    labels_train = to_categorical(labels_train)
+    labels_validation = to_categorical(labels_validation)
+    labels_test = to_categorical(labels_test)
+
     return data_train, labels_train, data_validation, labels_validation, data_test, labels_test
-
-
-loadDataset()
