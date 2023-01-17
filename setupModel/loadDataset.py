@@ -58,8 +58,8 @@ def loadDataset():
     print("shape \"labels\": {0}\n".format(labels.shape))
 
     # ******************** SPLIT DATA ********************
-    trainTestSplit = StratifiedShuffleSplit(n_splits = 1, test_size = 0.2)
-    trainValidationSplit =  StratifiedShuffleSplit(n_splits = 1, test_size = 0.2)
+    trainTestSplit = StratifiedShuffleSplit(n_splits = 1, test_size = 0.25)
+    trainValidationSplit =  StratifiedShuffleSplit(n_splits = 1, test_size = 0.25)
 
     for i, (idx_train, idx_test) in enumerate(trainTestSplit.split(data, labels)):
         data_train, data_test = data[idx_train], data[idx_test]

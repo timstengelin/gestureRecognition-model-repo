@@ -14,9 +14,10 @@ def setupModel():
 
     # ******************** DEFINE MODEL ********************
     model = models.Sequential()
-    model.add(layers.Dense(128, activation='relu', input_shape=(1506,)))
-    model.add(layers.Dense(128, activation='relu'))
-    model.add(layers.Dense(128, activation='relu'))
+    model.add(layers.Dense(512, activation='relu', input_shape=(1506,)))
+    model.add(layers.Dropout(0.25))
+    model.add(layers.Dense(512, activation='relu'))
+    model.add(layers.Dropout(0.25))
     model.add(layers.Dense(10, activation='softmax'))
         # end network with Dense layer of size 10  --> for each input sample, network will output 10-dimensional vector, which each entry encoding a different output class
         # softmax activation --> network will output probability distribution over the 10 different output classes
@@ -30,8 +31,8 @@ def setupModel():
     # ******************** TRAIN MODEL ********************
     history = model.fit(data_train,
                         labels_train,
-                        epochs=20,
-                        batch_size=10,
+                        epochs=100,
+                        batch_size=8,
                         validation_data=(data_validation, labels_validation))
 
     # ******************** PLOT TRAINING AND VALIDATION LOSS ********************
@@ -53,11 +54,11 @@ def setupModel():
     val_acc = history.history['val_accuracy']
 
     plt.figure()
-    plt.plot(epochs, acc, 'bo', label='training acc')
-    plt.plot(epochs, val_acc, 'b', label='validation acc')
+    plt.plot(epochs, acc, 'bo', label='training accuracy')
+    plt.plot(epochs, val_acc, 'b', label='validation accuracy')
     plt.title('training and validation accuracy')
     plt.xlabel('epochs')
-    plt.ylabel('loss')
+    plt.ylabel('accuracy')
     plt.legend()
 
     # ******************** EVALUATE MODEL ********************
