@@ -28,7 +28,7 @@ def setupFinalModel():
     # ******************** TRAIN MODEL ********************
     history = model.fit(np.concatenate((data_train, data_validation), axis=0),
                         np.concatenate((labels_train, labels_validation), axis=0),
-                        epochs=10,
+                        epochs=100,
                         batch_size=8)
 
     # ******************** EVALUATE MODEL ********************
