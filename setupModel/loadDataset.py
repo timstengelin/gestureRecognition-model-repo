@@ -5,8 +5,6 @@
 import os
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import StratifiedShuffleSplit
-from keras.utils.np_utils import to_categorical
 
 # ******************** SETTINGS ********************
 gestures = range(0, 9 + 1)
@@ -57,25 +55,4 @@ def loadDataset():
         # [1000 (= gestures*samplesPerGesture = samples) rows]
     print("shape \"labels\": {0}\n".format(labels.shape))
 
-    # ******************** SPLIT DATA ********************
-    trainTestSplit = StratifiedShuffleSplit(n_splits = 1, test_size = 0.25)
-    trainValidationSplit =  StratifiedShuffleSplit(n_splits = 1, test_size = 0.25)
-
-    for i, (idx_train, idx_test) in enumerate(trainTestSplit.split(data, labels)):
-        data_train, data_test = data[idx_train], data[idx_test]
-        labels_train, labels_test = labels[idx_train], labels[idx_test]
-    print("trainTestSplit:\nshape \"data_train\": {0}\nshape \"labels_train\": {1}\nshape \"data_test\": {2}\nshape \"labels_test\": {3}\n" \
-          .format(data_train.shape, labels_train.shape, data_test.shape, labels_test.shape))
-
-    for i, (idx_train, idx_validation) in enumerate(trainTestSplit.split(data_train, labels_train)):
-        data_train, data_validation = data_train[idx_train], data_train[idx_validation]
-        labels_train, labels_validation = labels_train[idx_train], labels_train[idx_validation]
-    print("trainValidationSplit:\nshape \"data_train\": {0}\nshape \"labels_train\": {1}\nshape \"data_validation\": {2}\nshape \"labels_validation\": {3}\n" \
-          .format(data_train.shape, labels_train.shape, data_validation.shape, labels_validation.shape))
-
-    # ******************** ONE-HOT ENCODE LABELS ********************
-    labels_train = to_categorical(labels_train)
-    labels_validation = to_categorical(labels_validation)
-    labels_test = to_categorical(labels_test)
-
-    return data_train, labels_train, data_validation, labels_validation, data_test, labels_test
+    return data, labels
