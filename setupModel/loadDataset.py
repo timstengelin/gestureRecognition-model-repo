@@ -28,10 +28,10 @@ def loadDataset():
             rawData = pd.concat([rawData, sampleData])
 
     # ******************** NORMALIZE DATA ********************
-    print("description \"rawData\":\n", rawData.describe(), "\n")
+    print("description \"rawData\":\n", rawData.describe(), "\n\n")
     normalizedData = (rawData - rawData.min()) / (rawData.max() - rawData.min())
         # [125500 (= gestures*samplesPerGesture*timestepsPerFeature) rows  x 6 (featuresPerSample) columns]
-    print("description \"normalizedData\":\n", normalizedData.describe(), "\n")
+    print("description \"normalizedData\":\n", normalizedData.describe(), "\n\n")
 
     # ******************** CONVERT DATA INTO NUMPY ARRAY ********************
     normalizedData_allSamples = pd.DataFrame()
@@ -52,10 +52,10 @@ def loadDataset():
 
     data = normalizedData_allSamples.transpose().to_numpy()
         # [1000 (= gestures*samplesPerGesture = samples) rows x 1506 (= features*timestepsPerFeature = timesteps) columns]
-    print("shape \"data\": {0}\n".format(data.shape))
+    print("shape \"data\": {0}\n\n".format(data.shape))
     labels = np.array(labels_allSamples)
         # [1000 (= gestures*samplesPerGesture = samples) rows]
-    print("shape \"labels\": {0}\n".format(labels.shape))
+    print("shape \"labels\": {0}\n\n".format(labels.shape))
 
     # ******************** SPLIT DATA ********************
     trainTestSplit = StratifiedShuffleSplit(n_splits=1, test_size=0.25)
@@ -65,14 +65,14 @@ def loadDataset():
         data_train, data_test = data[idx_train], data[idx_test]
         labels_train, labels_test = labels[idx_train], labels[idx_test]
     print(
-        "trainTestSplit:\nshape \"data_train\": {0}\nshape \"labels_train\": {1}\nshape \"data_test\": {2}\nshape \"labels_test\": {3}\n" \
+        "trainTestSplit:\nshape \"data_train\": {0}\nshape \"labels_train\": {1}\nshape \"data_test\": {2}\nshape \"labels_test\": {3}\n\n" \
         .format(data_train.shape, labels_train.shape, data_test.shape, labels_test.shape))
 
     for i, (idx_train, idx_validation) in enumerate(trainTestSplit.split(data_train, labels_train)):
         data_train, data_validation = data_train[idx_train], data_train[idx_validation]
         labels_train, labels_validation = labels_train[idx_train], labels_train[idx_validation]
     print(
-        "trainValidationSplit:\nshape \"data_train\": {0}\nshape \"labels_train\": {1}\nshape \"data_validation\": {2}\nshape \"labels_validation\": {3}\n" \
+        "trainValidationSplit:\nshape \"data_train\": {0}\nshape \"labels_train\": {1}\nshape \"data_validation\": {2}\nshape \"labels_validation\": {3}\n\n" \
         .format(data_train.shape, labels_train.shape, data_validation.shape, labels_validation.shape))
 
     # ******************** ONE-HOT ENCODE LABELS ********************

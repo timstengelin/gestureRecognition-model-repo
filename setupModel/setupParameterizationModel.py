@@ -3,9 +3,11 @@
 ####################################################################################################
 
 import matplotlib.pyplot as plt
+import numpy as np
 from keras import models
 from keras import layers
 from loadDataset import loadDataset
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
 
 def setupParameterizationModel():
@@ -34,6 +36,11 @@ def setupParameterizationModel():
                         epochs=100,
                         batch_size=8,
                         validation_data=(data_validation, labels_validation))
+    print('\n\n')
+
+    # ******************** PRINT MODEL SUMMARY ********************
+    model.summary()
+    print('\n\n')
 
     # ******************** PLOT TRAINING AND VALIDATION LOSS ********************
     loss = history.history['loss']
@@ -65,5 +72,20 @@ def setupParameterizationModel():
     results = model.evaluate(data_test, labels_test)
     print("test loss: {0}, test accuarcy: {1}".format(results[0], results[1]))
 
+    # ******************** PREDICT LABELS FOR TEST DATA ********************
+    predictions = model.predict(data_test)
+    predictions
+
+    print("shape: {0}, sum: {1}, largest entry: {2}\n\n".format(predictions[0].shape, np.sum(predictions[0]), np.argmax(predictions[0])))
+
+    labels_predictions = np.argmax(predictions, axis=1)
+    labels_test_nonCategorial = np.argmax(labels_test, axis=1)
+    cm = confusion_matrix(labels_test_nonCategorial, labels_predictions, normalize='true')
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+
     # ******************** SHOW PLOTS ********************
+
+    disp.plot()
     plt.show()
+
+setupParameterizationModel()
