@@ -16,10 +16,10 @@ def setupParameterizationModel():
 
     # ******************** DEFINE MODEL ********************
     model = models.Sequential()
-    model.add(layers.Dense(512, activation='relu', input_shape=(1506,)))
-    model.add(layers.Dropout(0.25))
-    model.add(layers.Dense(512, activation='relu'))
-    model.add(layers.Dropout(0.25))
+    model.add(layers.Dense(64, activation='relu', input_shape=(1506,)))
+    model.add(layers.Dropout(0.1))
+    model.add(layers.Dense(64, activation='relu'))
+    model.add(layers.Dropout(0.1))
     model.add(layers.Dense(10, activation='softmax'))
         # end network with Dense layer of size 10  --> for each input sample, network will output 10-dimensional vector, which each entry encoding a different output class
         # softmax activation --> network will output probability distribution over the 10 different output classes
@@ -33,7 +33,7 @@ def setupParameterizationModel():
     # ******************** TRAIN MODEL ********************
     history = model.fit(data_train,
                         labels_train,
-                        epochs=100,
+                        epochs=80,
                         batch_size=8,
                         validation_data=(data_validation, labels_validation))
     print('\n\n')

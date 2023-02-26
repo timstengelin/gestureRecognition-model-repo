@@ -8,6 +8,8 @@ import numpy as np
 from sklearn.model_selection import StratifiedShuffleSplit
 from keras.utils.np_utils import to_categorical
 
+import matplotlib.pyplot as plt #TS
+
 # ******************** SETTINGS ********************
 gestures = range(0, 9 + 1)
 samplesPerGesture = 100
@@ -25,11 +27,40 @@ def loadDataset():
             fileName = "number" + str(i) + "_" + str(j) + ".csv"
             filePath = os.path.realpath("..\\data\\datasets\\" + gestureDirectory + "\\" + fileName)
             sampleData = pd.read_csv(filePath, names=["aX", "aY", "aZ", "gX", "gY", "gZ"], sep=",")
-            rawData = pd.concat([rawData, sampleData])
+
+            sampleDataNormalized = sampleData
+
+            aX = sampleData['aX']
+            aXNormalized = (aX - aX.min()) / (aX.max() - aX.min())
+            #plt.plot(aX)
+            #plt.plot(aXNormalized)
+            sampleDataNormalized['aX'] = aXNormalized
+
+            aY = sampleData['aY']
+            aYNormalized = (aY - aY.min()) / (aY.max() - aY.min())
+            sampleDataNormalized['aY'] = aYNormalized
+
+            aZ = sampleData['aZ']
+            aZNormalized = (aZ - aZ.min()) / (aZ.max() - aZ.min())
+            sampleDataNormalized['aZ'] = aZNormalized
+
+            gX = sampleData['gX']
+            gXNormalized = (gX - gX.min()) / (gX.max() - gX.min())
+            sampleDataNormalized['gX'] = gXNormalized
+
+            gY = sampleData['gY']
+            gYNormalized = (gY - gY.min()) / (gY.max() - gY.min())
+            sampleDataNormalized['gY'] = gYNormalized
+
+            gZ = sampleData['gZ']
+            gZNormalized = (gZ - gZ.min()) / (gZ.max() - gZ.min())
+            sampleDataNormalized['gZ'] = gZNormalized
+
+            #rawData = pd.concat([rawData, sampleData]) #TS
+            rawData = pd.concat([rawData, sampleDataNormalized])
 
     # ******************** NORMALIZE DATA ********************
-    print("description \"rawData\":\n", rawData.describe(), "\n\n")
-    normalizedData = (rawData - rawData.min()) / (rawData.max() - rawData.min())
+    normalizedData = rawData
         # [125500 (= gestures*samplesPerGesture*timestepsPerFeature) rows  x 6 (featuresPerSample) columns]
     print("description \"normalizedData\":\n", normalizedData.describe(), "\n\n")
 
@@ -42,8 +73,12 @@ def loadDataset():
         for j in range(1, samplesPerGesture + 1):
             idx = i * samplesPerGesture * timestepsPerFeature + (j - 1) * timestepsPerFeature
                 # idx = 0; 251; 502; 753; ...
-            normalizedData_oneSample = normalizedData.iloc[idx:idx + timestepsPerFeature].to_numpy().flatten().tolist()
+
+            helper = normalizedData.iloc[idx:idx + timestepsPerFeature]
+            helper2 = ((((helper['aX'].squeeze().append(helper['aY'].squeeze())).append(helper['aZ'].squeeze())).append(helper['gX'].squeeze())).append(helper['gY'].squeeze())).append(helper['gZ'].squeeze())
+            normalizedData_oneSample = helper2.to_numpy().flatten().tolist()
             # [1506 (= features*timestepsPerFeature = timesteps) elements]
+
             idx = i * samplesPerGesture + (j - 1)
                 # idx = 0; 1; 2; 3; ...; 999
             normalizedData_allSamples[idx] = normalizedData_oneSample

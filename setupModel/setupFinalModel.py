@@ -14,10 +14,10 @@ def setupFinalModel():
 
     # ******************** DEFINE MODEL ********************
     model = models.Sequential()
-    model.add(layers.Dense(512, activation='relu', input_shape=(1506,)))
-    model.add(layers.Dropout(0.25))
-    model.add(layers.Dense(512, activation='relu'))
-    model.add(layers.Dropout(0.25))
+    model.add(layers.Dense(64, activation='relu', input_shape=(1506,)))
+    model.add(layers.Dropout(0.1))
+    model.add(layers.Dense(64, activation='relu'))
+    model.add(layers.Dropout(0.1))
     model.add(layers.Dense(10, activation='softmax'))
 
     # ******************** COMPILE MODEL ********************
@@ -28,7 +28,7 @@ def setupFinalModel():
     # ******************** TRAIN MODEL ********************
     history = model.fit(np.concatenate((data_train, data_validation), axis=0),
                         np.concatenate((labels_train, labels_validation), axis=0),
-                        epochs=100,
+                        epochs=80,
                         batch_size=8)
 
     # ******************** EVALUATE MODEL ********************
