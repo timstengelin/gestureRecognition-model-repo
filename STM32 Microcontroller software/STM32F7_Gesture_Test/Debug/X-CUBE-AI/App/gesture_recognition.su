@@ -1,0 +1,13 @@
+../X-CUBE-AI/App/gesture_recognition.c:347:9:gesture_recognition_configure_activations	16	static
+../X-CUBE-AI/App/gesture_recognition.c:386:9:gesture_recognition_configure_weights	16	static
+../X-CUBE-AI/App/gesture_recognition.c:430:9:ai_gesture_recognition_get_info	144	static
+../X-CUBE-AI/App/gesture_recognition.c:476:9:ai_gesture_recognition_get_report	144	static
+../X-CUBE-AI/App/gesture_recognition.c:522:10:ai_gesture_recognition_get_error	16	static
+../X-CUBE-AI/App/gesture_recognition.c:528:10:ai_gesture_recognition_create	24	static
+../X-CUBE-AI/App/gesture_recognition.c:538:10:ai_gesture_recognition_create_and_init	96	static
+../X-CUBE-AI/App/gesture_recognition.c:572:12:ai_gesture_recognition_inputs_get	16	static
+../X-CUBE-AI/App/gesture_recognition.c:582:12:ai_gesture_recognition_outputs_get	16	static
+../X-CUBE-AI/App/gesture_recognition.c:592:11:ai_gesture_recognition_destroy	16	static
+../X-CUBE-AI/App/gesture_recognition.c:598:9:ai_gesture_recognition_init	24	static
+../X-CUBE-AI/App/gesture_recognition.c:615:8:ai_gesture_recognition_run	24	static
+../X-CUBE-AI/App/gesture_recognition.c:622:8:ai_gesture_recognition_forward	16	static

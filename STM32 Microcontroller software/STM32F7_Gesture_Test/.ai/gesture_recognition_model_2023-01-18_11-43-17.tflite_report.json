@@ -1,0 +1,298 @@
+{
+    "_allocate_inputs": 4,
+    "_allocate_outputs": 4,
+    "cli_parameters": "validate --name gesture_recognition -m C:/Users/danie/Desktop/EIB_Semester_7_WS22/Projekt_Arbeit/Python/AI_Python/data/models/model_2023-01-18_11-43-17.tflite --type tflite --compression medium --verbosity 1 --workspace C:\\Users\\danie\\AppData\\Local\\Temp\\mxAI_workspace3182577551593003650364156373101003 --output C:\\Users\\danie\\.stm32cubemx\\network_output --allocate-inputs --allocate-outputs --valinput C:/Users/danie/Desktop/EIB_Semester_7_WS22/Projekt_Arbeit/Python/AI_Python/data/datasets/gesture_unseen/number5.csv --classifier",
+    "cli_version": {
+        "major": 1,
+        "micro": 0,
+        "minor": 6
+    },
+    "cli_version_str": "1.6.0",
+    "compression": {
+        "factor": 7.681625352903788,
+        "layers": {
+            "dense_0_weights": 8.0,
+            "dense_1_weights": 8.0
+        }
+    },
+    "date_time": "Sat Feb 25 14:32:15 2023",
+    "error": 0,
+    "error_str": [],
+    "exec_cmd": "validate",
+    "exec_duration": 0.0,
+    "hash": "ef7d0d3da81295bb1c8f8f517a30d72f",
+    "inputs": [
+        "dense_input"
+    ],
+    "layers": [
+        {
+            "c_id": [
+                0,
+                1
+            ],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 6024,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1,
+                        1,
+                        1506,
+                        1
+                    ]
+                },
+                "rom_size": 387648
+            },
+            "id": 0,
+            "inputs": [],
+            "name": "dense_input",
+            "original": "",
+            "type": "Input"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 771584,
+                "n_params": 771584,
+                "psize": 3086336,
+                "rom_output": {
+                    "c_size": 2048,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1,
+                        1,
+                        512,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 0,
+            "inputs": [
+                "dense_input"
+            ],
+            "name": "dense_0",
+            "original": "FULLY_CONNECTED",
+            "type": "Dense"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 512,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 2048,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1,
+                        1,
+                        512,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 0,
+            "inputs": [
+                "dense_0"
+            ],
+            "name": "nl_0_nl",
+            "original": "FULLY_CONNECTED",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                2,
+                3
+            ],
+            "extras": {
+                "n_macc": 262656,
+                "n_params": 262656,
+                "psize": 1050624,
+                "rom_output": {
+                    "c_size": 2048,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1,
+                        1,
+                        512,
+                        1
+                    ]
+                },
+                "rom_size": 133184
+            },
+            "id": 1,
+            "inputs": [
+                "nl_0_nl"
+            ],
+            "name": "dense_1",
+            "original": "FULLY_CONNECTED",
+            "type": "Dense"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 512,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 2048,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1,
+                        1,
+                        512,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 1,
+            "inputs": [
+                "dense_1"
+            ],
+            "name": "nl_1_nl",
+            "original": "FULLY_CONNECTED",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                4
+            ],
+            "extras": {
+                "n_macc": 5130,
+                "n_params": 5130,
+                "psize": 20520,
+                "rom_output": {
+                    "c_size": 40,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1,
+                        1,
+                        10,
+                        1
+                    ]
+                },
+                "rom_size": 20520
+            },
+            "id": 2,
+            "inputs": [
+                "nl_1_nl"
+            ],
+            "name": "dense_2",
+            "original": "FULLY_CONNECTED",
+            "type": "Dense"
+        },
+        {
+            "c_id": [
+                5
+            ],
+            "extras": {
+                "n_macc": 150,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 40,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1,
+                        1,
+                        10,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 3,
+            "inputs": [
+                "dense_2"
+            ],
+            "name": "nl_3",
+            "original": "SOFTMAX",
+            "type": "Nonlinearity"
+        }
+    ],
+    "model_files": [
+        "C:\\Users\\danie\\Desktop\\EIB_Semester_7_WS22\\Projekt_Arbeit\\Python\\AI_Python\\data\\models\\model_2023-01-18_11-43-17.tflite"
+    ],
+    "model_n_params": 1039370,
+    "model_name": "model_20230118_114317",
+    "model_size": 4157480,
+    "model_type": "tflite",
+    "name": "gesture_recognition",
+    "outputs": [
+        "nl_3"
+    ],
+    "ram_io_size": [
+        6024,
+        40
+    ],
+    "ram_size": [
+        8072,
+        8072
+    ],
+    "report_version": 1.1,
+    "rom_cfact": 1.0,
+    "rom_heap_inspector": 2048,
+    "rom_inputs": [
+        {
+            "c_size": 6024,
+            "c_type": "float",
+            "name": "dense_input"
+        }
+    ],
+    "rom_n_macc": 1040544,
+    "rom_outputs": [
+        {
+            "c_size": 40,
+            "c_type": "float",
+            "name": "nl_3"
+        }
+    ],
+    "rom_size": 541352,
+    "strategy": "heap_overlay",
+    "tools_api_version": {
+        "major": 1,
+        "micro": 0,
+        "minor": 6
+    },
+    "tools_version": {
+        "extra": "RC5",
+        "major": 7,
+        "micro": 0,
+        "minor": 3
+    },
+    "val_error": 2.7618346765596672e-18,
+    "val_error_desc": "x-cross (l2r) #1",
+    "val_metrics": [
+        {
+            "acc": "100.00%",
+            "desc": "X-cross #1",
+            "l2r": 2.7618346765596672e-18,
+            "mae": 3.5075265216452225e-19,
+            "mean": -3.5075265216452225e-19,
+            "nse": 1.0,
+            "rmse": 8.733689303919168e-19,
+            "std": 7.9984115593480785e-19,
+            "ts_name": "nl_3, ai_float, (1,1,1,10), m_id=[3]"
+        }
+    ]
+}
