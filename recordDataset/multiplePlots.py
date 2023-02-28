@@ -5,14 +5,14 @@ import matplotlib.pyplot as plt
 #**************** Plot  settings ****************************
 
 # Select the gesture wich should be plotted
-gestureDirectory = "gesture_number7"
-fileName = "number7_"
+gestureDirectory = "gesture_number0"
+fileName = "number0_"
 # File typ must always be .csv
 fileTyp = ".csv"
 
 # Select the number of files wich should be visualized
 startFile = 1
-endFile = 100
+endFile = 10
 
 # When True legend will also be visualized
 withLegend = True

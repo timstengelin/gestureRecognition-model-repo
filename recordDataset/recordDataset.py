@@ -75,7 +75,7 @@ class App(tk.Frame):
     def clearData(self):
         self.data.clear()
         self.listbox.delete(0, tk.END)
-        self.listbox.insert(tk.END, "Sample  aX  aY  aZ")
+        self.listbox.insert(tk.END, "Sample;  aX;  aY;  aZ;  gX;   gY;  gZ;")
 
     def createFile(self):
 
@@ -83,7 +83,7 @@ class App(tk.Frame):
         newPath = os.path.realpath("..\\data\\datasets\\"+strPath)
 
         #self.__counter = self.__counter + 1
-        #totalStr = "gesture_number7\\number7_"+str(self.__counter)+".csv"
+        #totalStr = "gesture_number9\\number9_"+str(self.__counter)+".csv"
         #self.pathEntry.delete(0, 'end')
         #self.pathEntry.insert(0, totalStr)
         #newPath = os.path.realpath("..\\data\\datasets\\" + totalStr)
